@@ -19,7 +19,7 @@ After iterating through the collection, return the saved value.
 
 ## Keywords ##
 
-Keyword             | meaning
+Keyword             | Meaning
 --------------------|-----------------------------------
 START               | start of the program
 SET                 | sets a variable we can use later
@@ -31,4 +31,28 @@ WHILE               | show looping logic
 END                 | end of the program
 
 
+## Pseudo code with Keywords ##
+
+```
+START
+
+# Given a collection of integers called "numbers"
+
+SET iterator = 1
+SET saved_number = value within numbers collection at space 1
+
+WHILE iterator < length of numbers
+  SET current_number = value within numbers collection at space "iterator"
+  IF saved_number >= current_number
+    go to the next iteration
+  ELSE
+    saved_number = current_number
+
+  iterator = iterator + 1
+
+  PRINT saved_number
+
+END
+
+```
 
