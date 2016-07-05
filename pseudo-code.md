@@ -19,13 +19,16 @@ After iterating through the collection, return the saved value.
 
 ## Keywords ##
 
-Keyword  meaning
+Keyword             | meaning
+--------------------|-----------------------------------
+START               | start of the program
+SET                 | sets a variable we can use later
+GET                 | retrieve input from user
+PRINT               | display output to user
+READ                | retrieve value from variable
+IF / ELSE IF / ELSE | show conditional branches in logic
+WHILE               | show looping logic
+END                 | end of the program
 
-START  start of the program
-SET  sets a variable we can use later
-GET retrieve input from user
-PRINT display output to user
-READ retrieve value from variable
-IF / ELSE IF / ELSE  show conditional branches in logic
-WHILE  show looping logic
-END  end of the program
+
+
