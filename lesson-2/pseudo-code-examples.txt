@@ -1,0 +1,64 @@
+1.
+a method that returns the sum of two integers
+
+Given two integers
+save the first integer into a variable number1
+save the second integer into a variable number2
+add number1 + number2 and save it into a variable result
+Print out the result
+
+START
+# given 2 integers
+  SET number1 = first integer
+  SET number2 = second integer
+
+  result = number1 + number2
+
+  PRINT result
+END
+
+
+2.
+a method that takes an array of strings, and returns a string that is all those strings concatenated together
+
+Given a collection of strings
+Initialize an empty container for the result called 'result'
+Iterate over the collection
+for each string in the collection add the string to 'result'
+return 'result'
+
+
+START
+  # Given a collection of strings
+  SET result = ""
+  FOR EACH string in the strings collection
+    result << string
+
+  PRINT result
+END
+
+
+3.
+a method that takes an array of integers, and returns a new array with every other element
+
+Given an array of integers
+Initialize an empty array named "result"
+Iterate through the collection
+  - if the index of the element in the collection is an even number
+    add the element to the "result"
+  - otherwise
+    skip the element in the collection and go to the next element
+Print out the result
+
+START
+  # Given a collection of integers named "numbers"
+  SET result = empty array
+  FOR EACH number in the "numbers" collection
+    IF index of number is even?
+      result << number
+    ELSE
+      next
+
+  PRINT result
+END
+
