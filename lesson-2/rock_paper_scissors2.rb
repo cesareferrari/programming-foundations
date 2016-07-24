@@ -1,17 +1,22 @@
-VALID_CHOICES = {'r' => 'rock', 'p' => 'paper', 'sc' => 'scissors', 'sp' => 'spock', 'l' => 'lizard'}
+VALID_CHOICES = { 'r' => 'rock',
+                  'p' => 'paper',
+                  's' => 'scissors',
+                  'k' => 'spock',
+                  'l' => 'lizard' }
 
-$player_score = 0
-$computer_score = 0
+MAX_SCORE = 3
 
-def end_game
-  $player_score == 5 || $computer_score == 5
+score = { player: 0, computer: 0 }
+
+def end_game?(score)
+  score[:player] == MAX_SCORE || score[:computer] == MAX_SCORE
 end
 
 def prompt(message)
   puts "=> #{message}"
 end
 
-def prompt_choices
+def display_choices
   string = ''
   VALID_CHOICES.each do |initial, choice|
     string << "#{initial} (#{choice}), "
@@ -19,17 +24,17 @@ def prompt_choices
   string.gsub(/, $/, '')
 end
 
+# rock wins over scissors, lizard...
+RULES = {
+  'rock' => %w(scissors lizard),
+  'lizard' => %w(spock paper),
+  'spock' => %w(scissors rock),
+  'scissors' => %w(lizard paper),
+  'paper' => %w(rock spock)
+}
+
 def win?(first, second)
-  (first == 'rock' && second == 'scissors') ||
-    (first == 'rock' && second == 'lizard') ||
-    (first == 'lizard' && second == 'spock') ||
-    (first == 'spock' && second == 'scissors') ||
-    (first == 'scissors' && second == 'lizard') ||
-    (first == 'lizard' && second == 'paper') ||
-    (first == 'paper' && second == 'rock') ||
-    (first == 'paper' && second == 'spock') ||
-    (first == 'spock' && second == 'rock') ||
-    (first == 'scissors' && second == 'paper')
+  true if RULES[first].include? second
 end
 
 def display_results(player, computer)
@@ -42,26 +47,29 @@ def display_results(player, computer)
   end
 end
 
-def score(player, computer)
+def add_score(player, computer, score)
   if win?(player, computer)
-    $player_score += 1
+    score[:player] += 1
   elsif win?(computer, player)
-    $computer_score += 1
+    score[:computer] += 1
+  else
+    # tie, add 1 to each
+    score[:player] += 1
+    score[:computer] += 1
   end
-
-  "My score: #{$player_score}, Computer score: #{$computer_score}"
 end
 
+prompt "Welcome to Rock, Paper, Scissors, Spock, Lizard"
+prompt "First player that reaches #{MAX_SCORE} points wins!"
+
 loop do
-
-  choice = ''
-  my_choice = ''
+  player_choice = ''
   loop do
-    prompt("Choose one: #{prompt_choices}")
-    choice = gets.chomp
+    prompt("Choose one: #{display_choices}")
+    player_choice = gets.chomp
 
-    if VALID_CHOICES.keys.include?(choice)
-      my_choice = VALID_CHOICES[choice]
+    if VALID_CHOICES.keys.include?(player_choice)
+      player_choice = VALID_CHOICES[player_choice]
       break
     else
       prompt("That's not a valid choice.")
@@ -70,18 +78,25 @@ loop do
 
   computer_choice = VALID_CHOICES.values.sample
 
-  prompt "You chose: #{my_choice}; Computer chose: #{computer_choice}"
+  prompt "You chose: #{player_choice}; Computer chose: #{computer_choice}"
 
-  message = display_results(my_choice, computer_choice)
+  message = display_results(player_choice, computer_choice)
   prompt message
-  prompt score(my_choice, computer_choice)
+  add_score(player_choice, computer_choice, score)
 
-  if end_game
-    prompt "My final score: #{$player_score}, Computer final score: #{$computer_score}"
+  prompt "Your score: #{score[:player]}, Computer score: #{score[:computer]}"
+
+  if end_game?(score)
+    if score[:player] == MAX_SCORE
+      prompt "Congratulations, you win the match!"
+    else
+      prompt "Computer wins the match!"
+    end
+
     break
   end
 
-  prompt("Do you want to play again?")
+  prompt("Do you want to play again? (Y/N)")
   answer = gets.chomp
 
   break unless answer.downcase.start_with?('y')
