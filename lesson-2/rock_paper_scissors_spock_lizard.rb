@@ -43,7 +43,7 @@ def display_results(player, computer)
 end
 
 def win?(first, second)
-  true if RULES[first].include? second
+  RULES[first].include? second
 end
 
 def add_score(player, computer, score)
@@ -70,9 +70,7 @@ loop do
   loop do
     prompt('Choose one:')
 
-    display_choices.each do |choice|
-      puts choice
-    end
+    puts display_choices
 
     player_choice = gets.chomp.downcase
 
@@ -109,10 +107,19 @@ loop do
     break
   end
 
-  prompt("Do you want to play again? (Y/N)")
-  answer = gets.chomp.downcase
+  answer = ''
+  loop do
+    prompt("Do you want to play again? (Y/N)")
+    answer = gets.chomp.downcase
 
-  break unless answer.start_with?('y')
+    if /y|n/ =~ answer
+      break
+    else
+      prompt "Press N to quit or Y to play again."
+    end
+  end
+
+  break if answer.start_with?('n')
 end
 
 prompt "Thank you for playing. Good Bye."
