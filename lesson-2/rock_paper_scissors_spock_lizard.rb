@@ -6,7 +6,7 @@ VALID_CHOICES = {
   's' => 'scissors',
   'k' => 'spock',
   'l' => 'lizard'
-}
+}.freeze
 
 # rock wins over scissors and lizard;
 # lizard wins over spock and paper; and so on...
@@ -16,7 +16,7 @@ RULES = {
   'spock'    => %w(scissors rock),
   'scissors' => %w(lizard paper),
   'paper'    => %w(rock spock)
-}
+}.freeze
 
 score = { player: 0, computer: 0 }
 
@@ -112,7 +112,7 @@ loop do
     prompt("Do you want to play again? (Y/N)")
     answer = gets.chomp.downcase
 
-    if /y|n/ =~ answer
+    if /y|n/ =~ answer[0]
       break
     else
       prompt "Press N to quit or Y to play again."
