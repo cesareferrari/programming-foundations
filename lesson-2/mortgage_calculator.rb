@@ -2,12 +2,8 @@ require 'yaml'
 
 MESSAGES = YAML.load_file('mortgage_calculator_messages.yaml')
 
-def prompt(message, extra = '')
-  if MESSAGES[message]
-    puts "==> #{MESSAGES[message]} #{extra}"
-  else
-    puts "==> #{message}"
-  end
+def prompt(message, *args)
+  puts "==> #{format(MESSAGES[message], *args)}"
 end
 
 def valid_float?(value)
@@ -19,11 +15,14 @@ def valid_integer?(value)
 end
 
 prompt 'welcome'
+name = gets.chomp
+
+name = %w(stranger honey buddy).sample if name.empty?
 
 loop do
   amount = ''
   loop do
-    prompt 'enter_loan_amount'
+    prompt('enter_loan_amount', name)
     amount = gets.chomp
     break if valid_float?(amount)
     prompt 'valid_amount'
@@ -52,12 +51,12 @@ loop do
 
   prompt('amount', amount)
   prompt('apr', yearly_interest_rate)
-  prompt "Duration Years: #{duration_years.to_i} (#{duration_months} months)"
-  prompt('payment', format('%.2f', monthly_payment))
+  prompt('duration', duration_years.to_i, duration_months)
+  prompt('payment', monthly_payment)
 
   prompt 'perform_another'
   answer = gets.chomp
   break unless answer.downcase.start_with?('y')
 end
 
-prompt 'thanks'
+prompt('thanks', name)
