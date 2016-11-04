@@ -17,7 +17,7 @@ end
 prompt 'welcome'
 name = gets.chomp
 
-name = %w(stranger honey buddy).sample if name.empty?
+name = %w(Stranger Honey Buddy).sample if name.empty?
 
 loop do
   amount = ''
