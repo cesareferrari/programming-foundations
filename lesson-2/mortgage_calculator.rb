@@ -7,8 +7,7 @@ def prompt(message, *args)
 end
 
 def valid_input?(value, can_be_a_float = true)
-  return value.to_f > 0 if can_be_a_float
-  value.to_i > 0
+  can_be_a_float ? (value.to_f > 0) : (value.to_i > 0)
 end
 
 prompt 'welcome'
