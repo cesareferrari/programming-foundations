@@ -1,32 +1,24 @@
-def ordinalize(num)
-  number = num.to_s
+def century_for(year)
+  (year % 100 == 0) ? (year / 100).to_s : (year / 100 + 1).to_s
+end
 
-  case
-  when number.end_with?('11')
-    number + 'th'
-  when number.end_with?('12')
-    number + 'th'
-  when number.end_with?('13')
-    number + 'th'
-  when number.end_with?('1')
-    number + 'st'
-  when number.end_with?('2')
-    number + 'nd'
-  when number.end_with?('3')
-    number + 'rd'
+def ending_for(century = '')
+  if century.end_with?('11', '12', '13')
+    century + 'th'
   else
-    number + 'th'
+    case century[-1]
+    when '1' then century + 'st'
+    when '2' then century + 'nd'
+    when '3' then century + 'rd'
+    else century + 'th'
+    end
   end
 end
 
 def century(year)
-  if year.to_s.end_with?('00')
-    ordinalize(year / 100)
-  else
-    ordinalize(year / 100 + 1)
-  end
+  century = century_for(year)
+  ending_for(century)
 end
-
 
 puts century(2000) == '20th'
 puts century(2001) == '21st'

@@ -1,24 +1,31 @@
-# These two methods also work
+#Write a method that takes two strings as arguments, determines the longest of
+#the two strings, and then returns the result of concatenating the shorter
+#string, the longer string, and the shorter string once again. You may assume
+#that the strings are of different lengths.
 #
-# def short_and_long(str1, str2)
-#   if (str1.length <=> str2.length) == -1
-#     return str1, str2
-#   else
-#     return str2, str1
-#   end
-# end
+#
+#- method takes 2 arguments of type strings
+#- input 2 different size strings
+#- input can be empty string
+#
+#if no string is empty return
+#  - determine longest of 2 strings
+#  - return concatenation of short-long-short
+#
+#
+#Examples:
+#
+#short_long_short('abc', 'defgh') == "abcdefghabc"
+#short_long_short('abcde', 'fgh') == "fghabcdefgh"
+#short_long_short('', 'xyz') == "xyz"
+#
 
-# def short_long_short(str1, str2)
-#   short, long = short_and_long(str1, str2)
-#   short + long + short
-# end
-
-def compare_lengths(str1, str2)
-  str1.length <=> str2.length
-end
-
-def short_long_short(str1, str2)
-  compare_lengths(str1, str2) < 0 ?  (str1 + str2 + str1) : (str2 + str1 + str2)
+def short_long_short(string1, string2)
+  if string1.length > string2.length
+    [string2, string1, string2].join
+  else
+    [string1, string2, string1].join
+  end
 end
 
 
