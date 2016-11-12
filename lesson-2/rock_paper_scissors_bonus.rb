@@ -1,4 +1,4 @@
-MAX_SCORE = 3
+MAX_SCORE = 5
 
 RULES = { 'rock' => %w(scissors lizard),
           'paper' => %w(rock spock),
