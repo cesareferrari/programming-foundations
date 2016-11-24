@@ -97,7 +97,7 @@ separator(4)
 require 'securerandom'
 p SecureRandom.uuid
 
-
+# version 1
 def generate_uuid
   allowed_characters = ('a'..'f').to_a + (0..9).to_a
   hyphen_positions = [8, 13, 18, 23]
@@ -106,6 +106,23 @@ def generate_uuid
   32.times { uuid << allowed_characters.sample.to_s }
 
   hyphen_positions.each { |position| uuid.insert(position, '-') }
+
+  uuid.join
+end
+
+# version 2
+def generate_uuid
+  characters = []
+  (0..15).each { |n| characters << n.to_s(16) }
+
+  sections = [8, 4, 4, 4, 12]
+
+  uuid = []
+
+  sections.each_with_index do |section, index|
+    section.times { uuid << characters.sample }
+    uuid << '-' unless index == sections.length - 1
+  end
 
   uuid.join
 end
@@ -131,11 +148,10 @@ separator(5)
 #   return true
 # end
 
-
-
 def is_an_ip_number?(word)
   regex = /^\d{1,3}$/
-  word.match regex
+  range = 0..255
+  word.match(regex) && range.cover?(word.to_i)
 end
 
 def dot_separated_ip_address?(input_string)
@@ -155,7 +171,8 @@ puts dot_separated_ip_address?('255.0.0.1') == true
 puts dot_separated_ip_address?('255.255.255.255') == true
 puts dot_separated_ip_address?('') == false
 puts dot_separated_ip_address?('1.0') == false
-puts dot_separated_ip_address?('1.0.5') == false
 puts dot_separated_ip_address?('4.5.5') == false
 puts dot_separated_ip_address?('1.2.3.4.5') == false
 puts dot_separated_ip_address?('2555.0.0.1') == false
+puts dot_separated_ip_address?('256.0.0.1') == false
+
