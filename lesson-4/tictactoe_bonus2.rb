@@ -149,14 +149,6 @@ def alternate_player(current)
   current == 'player' ? 'computer' : 'player'
 end
 
-# def assign_points_to_winner(brd, score)
-#   if detect_winner(brd) == 'Player'
-#     score[:player] += 1
-#   elsif detect_winner(brd) == 'Computer'
-#     score[:computer] += 1
-#   end
-# end
-
 def assign_points_to_winner(brd, score)
   if detect_winner(brd) == 'Player'
     score[:player] += 1
