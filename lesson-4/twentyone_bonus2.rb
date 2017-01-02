@@ -1,5 +1,3 @@
-require 'pry'
-
 SUITS = %w(H D C S).freeze
 VALUES = %w(2 3 4 5 6 7 8 9 10 J Q K A).freeze
 MAX_POINTS = 3
@@ -22,13 +20,13 @@ def total(cards)
   sum = 0
 
   values.each do |value|
-    sum +=   if value == 'A'
-               11
-             elsif value.to_i.zero?
-               10
-             else
-               value.to_i
-             end
+    sum += if value == 'A'
+             11
+           elsif value.to_i.zero?
+             10
+           else
+             value.to_i
+           end
   end
 
   values.count { |value| value == 'A' }.times do
