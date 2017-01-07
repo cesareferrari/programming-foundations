@@ -2,7 +2,8 @@
 # same number of elements, and each element has the running total from the
 # original Array.
 
-def running_total(array)
+# this works but a better solution is below with map
+def my_running_total(array)
   result_array = []
   result_array << array.shift unless array.empty?
 
@@ -11,6 +12,11 @@ def running_total(array)
   end
 
   result_array
+end
+
+def running_total(array)
+  sum = 0
+  array.map { |value| sum += value }
 end
 
 puts running_total([2, 5, 13]) == [2, 7, 20]
