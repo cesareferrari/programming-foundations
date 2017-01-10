@@ -31,6 +31,16 @@ def string_to_integer(string)
   result
 end
 
+def string_to_integer(string)
+  digits = string.chars.map {|char| DIGITS[char]}
+
+  result = 0
+  digits.each {|digit| result = result * 10 + digit}
+
+  result
+end
+
 
 puts string_to_integer('4321') == 4321
 puts string_to_integer('570') == 570
+p string_to_integer('-570')
