@@ -1,0 +1,41 @@
+Exercises
+------------------------
+Easy 4 exercises. Practice on those using the problem solving method and try to solve each exercise within 20-30 minutes.
+
+
+Learning methods
+------------------------
+Learn methods for:
+  - String
+  - Array
+  - Hash
+  - Enumerable
+
+What does it mean?
+Be able to tell what all the methods are for one of those four classes and
+explain what they do. 90% of the method is probably considered a good number to
+know. So, I need to know 90% of the methods by heart for each class.
+
+
+String methods
+
+Class methods
+
+1. String.new('Hello world')
+
+This is a class method. Returns the string passed as the argument.
+
+2. String.try_convert(object)
+Returns the object passed as an argument as a string if it can be converted. If it cannot be converted, it return nil.
+It uses to_str to convert.
+
+For example:
+
+3.to_str returns 'Undefined method to_str for 1:Fixnum'
+Means that it's a number and there is no to_str method defined for it.
+
+3.to_s will return '3' (as a string). Means that to_s is defined for Fixnum.
+
+Calling String.try_convert(3) will return nil, because it tries to use to_str but since the method is not defined for Fixnum it will return nil instead of an exception.
+
+So, try_convert is like using to_str but without returning an exception if the conversion cannot be done.

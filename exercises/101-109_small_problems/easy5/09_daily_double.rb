@@ -48,28 +48,8 @@ def crunch(string)
     break if chars.empty?
 
     next_char = chars.shift
-    if next_char == output[-1]
-      next
-    else
-      output << next_char
-    end
-  end
-
-  output
-end
-
-# SECOND TRY (still doesn't work)
-
-# method in array that removes duplicates
-
-# array.delete_if { |element| element with previous index == current element }
-# reject
-
-def crunch(string)
-  chars = string.chars
-
-  output = chars.delete_if do |char|
-    chars[chars.index(char) - 1] == char
+    next if next_char == output[-1]
+    output << next_char
   end
 
   output
@@ -80,15 +60,3 @@ puts crunch('4444abcabccba') == '4abcabcba'
 puts crunch('ggggggggggggggg') == 'g'
 puts crunch('a') == 'a'
 puts crunch('') == ''
-
-
-
-# NEXT ACTIONS / STUDY MORE ABOUT
-# -------------------------------
-
-# loop: next keyword. It seems to be working as I expect in my method but see if I can get more information on how 'next' works in a loop
-
-
-# In the second method I am trying out chars.delete_if
-# It's not returning what I thought.
-# Investigate why
