@@ -1,3 +1,4 @@
+# Using a hash lookup table
 NUMBERS = { '0' => 0,
             '1' => 1,
             '2' => 2,
@@ -9,7 +10,6 @@ NUMBERS = { '0' => 0,
             '8' => 8,
             '9' => 9 }
 
-# Using a hash lookup table
 def string_to_integer(string)
   result = 0
   number_strings = string.chars
@@ -22,9 +22,9 @@ def string_to_integer(string)
 end
 
 
+# Using an array lookup table
 NUMBERS_A = %w(0 1 2 3 4 5 6 7 8 9)
 
-# Using an array lookup table
 def string_to_integer2(string)
   result = 0
   number_strings = string.chars
@@ -33,6 +33,13 @@ def string_to_integer2(string)
     result = result * 10 + NUMBERS_A.index(number_string)
   end
 
+  result
+end
+
+# Using an array lookup table but shorter method
+def string_to_integer(string)
+  result = 0
+  string.chars.each { |digit| result = result * 10 + NUMBERS_A.index(digit) }
   result
 end
 
