@@ -1,12 +1,24 @@
-def time_of_day(min)
-  min = 1440 - min.abs if min < 0
+# My first solution: works
+# def time_of_day(min)
+#   min = 1440 - min.abs if min < 0
+# 
+#   hh, mm = min.divmod(60)
+#   _, hh = hh.divmod(24)
+# 
+#   hh = 0 if hh == 24
+# 
+#   format('%02d:%02d', hh, mm)
+# end
 
-  hh, mm = min.divmod(60)
-  _, hh = hh.divmod(24)
 
-  hh = 0 if hh == 24
+MINUTES_PER_HOUR = 60
+HOURS_PER_DAY = 24
+MINUTES_PER_DAY = HOURS_PER_DAY * MINUTES_PER_HOUR
 
-  format('%02d:%02d', hh, mm)
+def time_of_day(delta_minutes)
+  delta_minutes =  delta_minutes % MINUTES_PER_DAY
+  hours, minutes = delta_minutes.divmod(MINUTES_PER_HOUR)
+  format('%02d:%02d', hours, minutes)
 end
 
 puts time_of_day(0) == "00:00"
