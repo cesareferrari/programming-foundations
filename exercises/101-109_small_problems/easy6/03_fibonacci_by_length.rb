@@ -12,3 +12,7 @@ def find_fibonacci_index_by_length(length)
 end
 
 find_fibonacci_index_by_length(2) == 7
+find_fibonacci_index_by_length(10) == 45
+find_fibonacci_index_by_length(100) == 476
+find_fibonacci_index_by_length(1000) == 4782
+find_fibonacci_index_by_length(10000) == 47847
