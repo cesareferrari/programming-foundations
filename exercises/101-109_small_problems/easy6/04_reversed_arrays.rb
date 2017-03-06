@@ -1,12 +1,26 @@
+# def reverse!(list)
+#   temp = []
+#
+#   until list.empty?
+#     temp << list.pop
+#   end
+#
+#   until temp.empty?
+#     list << temp.shift
+#   end
+#
+#   list
+# end
+
+
 def reverse!(list)
-  temp = []
+  index_left = 0
+  index_right = -1
 
-  until list.empty?
-    temp << list.pop
-  end
-
-  until temp.empty?
-    list << temp.shift
+  while index_left < list.length / 2
+    list[index_left], list[index_right] = list[index_right], list[index_left]
+    index_left += 1
+    index_right -= 1
   end
 
   list
