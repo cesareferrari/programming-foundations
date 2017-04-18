@@ -1,9 +1,25 @@
-stories = ["The %s %s has %s %s a plant.",
-"A red %s %s %s the %s arrow."]
+STORY = "I think I will %s my %s %s %s"
 
-noun = 'dog'
-verb = 'walk'
-adjective = 'blue'
-adverb = 'quickly'
+loop do
+  print 'Enter a noun: '
+  noun = gets.chomp
 
-puts format(stories[0], adjective, noun, adverb, verb)
+  print 'Enter a verb: '
+  verb = gets.chomp
+
+  print 'Enter an adjective: '
+  adjective = gets.chomp
+
+  print 'Enter an adverb: '
+  adverb = gets.chomp
+
+  puts format(STORY, verb, adjective, noun, adverb)
+
+  puts 'Do you want to play again? (Y/N)'
+
+  answer = gets.chomp.downcase
+
+  break if answer == 'n'
+end
+
+puts 'Goodbye!'
