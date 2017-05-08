@@ -1,13 +1,14 @@
-def find_century_number_for(year)
-  (year % 100 == 0) ?  year / 100 : year / 100 + 1
-end
+# Write a method that takes a year as input and returns the century. The return
+# value should be a string that begins with the century number, and ends with
+# st, nd, rd, or th as appropriate for that number.
 
-def add_suffix_to(century_number)
-  century = century_number.to_s
+# New centuries begin in years that end with 01. So, the years 1901-2000
+# comprise the 20th century.
 
-  return century + 'th' if century.end_with?('11', '12', '13')
+def ordinalize(century)
+  return "#{century}th" if %w(11 12 13).include?(century.to_s[-2..-1])
 
-  case century[-1]
+  case century.to_s[-1]
   when '1' then "#{century}st"
   when '2' then "#{century}nd"
   when '3' then "#{century}rd"
@@ -17,8 +18,9 @@ def add_suffix_to(century_number)
 end
 
 def century(year)
-  century_number = find_century_number_for(year)
-  add_suffix_to(century_number)
+  century, _ = year.divmod(100)
+  (year % 100 == 0) ? century = century : century = century + 1
+  ordinalize century
 end
 
 puts century(2000) == '20th'
