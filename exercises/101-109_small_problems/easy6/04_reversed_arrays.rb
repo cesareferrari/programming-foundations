@@ -1,30 +1,31 @@
-# def reverse!(list)
-#   temp = []
-#
-#   until list.empty?
-#     temp << list.pop
-#   end
-#
-#   until temp.empty?
-#     list << temp.shift
-#   end
-#
-#   list
-# end
+# Write a method that takes an Array as an argument, and reverses its elements
+# in place; that is, mutate the Array passed into this method. The return value
+# should be the same Array object.
+
+# You may not use Array#reverse or Array#reverse!.
+
+
 
 
 def reverse!(list)
-  index_left = 0
-  index_right = -1
+  return list if list.size < 2
 
-  while index_left < list.length / 2
-    list[index_left], list[index_right] = list[index_right], list[index_left]
-    index_left += 1
-    index_right -= 1
+  first = 0
+  last = -1
+
+  loop do
+    list[first], list[last] = list[last], list[first]
+    first += 1
+    last -= 1
+
+    break if first == list.size / 2
   end
 
   list
 end
+
+
+
 
 list = [1,2,3,4]
 result = reverse!(list) # => [4,3,2,1]
@@ -40,5 +41,5 @@ reverse!(list) # => ["abc"]
 puts list == ["abc"]
 
 list = []
-reverse!([]) # => []
+reverse!(list) # => []
 puts list == []
