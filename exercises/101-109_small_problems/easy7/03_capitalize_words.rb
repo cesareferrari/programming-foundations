@@ -1,9 +1,13 @@
-def word_cap(string)
-  string.split.map { |word| word.capitalize }.join(' ')
-end
+# Write a method that takes a single String argument and returns a new string
+# that contains the original value of the argument, but the first letter of
+# every word is now capitalized.
+
+# You may assume that words are any sequence of non-blank characters, and that
+# only the first character of each word must be considered.
 
 def word_cap(string)
-  string.split.map(&:capitalize).join(' ')
+  words = string.split
+  words.map { |word| word.capitalize }.join(' ')
 end
 
 puts word_cap('four score and seven') == 'Four Score And Seven'

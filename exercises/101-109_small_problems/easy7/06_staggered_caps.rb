@@ -1,33 +1,32 @@
-def is_letter?(letter)
-  letter.match(/[a-zA-Z]/) ? true : false
-end
+# Modify the method from the previous exercise so it ignores non-alphabetic
+# characters when determining whether it should uppercase or lowercase each
+# letter. The non-alphabetic characters should still be included in the return
+# value; they just don't count when toggling the desired case.
 
 def staggered_case(string)
+  letters = string.chars
+  uppercase = true
+  counter = 0
   result = ''
-  count = 0
-  upcase = true
 
   loop do
-    break if count == string.size
+    break if counter == letters.size
 
-    current_letter = string[count]
+    current_letter = letters[counter]
 
-    if is_letter?(current_letter) && upcase == true
-      result << string[count].upcase
-      upcase = false
-    elsif is_letter?(current_letter) && upcase == false
-      result << string[count].downcase
-      upcase = true
+    if current_letter.match(/[a-z]/i)
+      uppercase ? result << current_letter.upcase : result << current_letter.downcase
+      uppercase = !uppercase
     else
-      result << string[count]
+      result << current_letter
     end
 
-    count += 1
+    counter += 1
   end
 
   result
 end
 
-staggered_case('I Love Launch School!') == 'I lOvE lAuNcH sChOoL!'
-staggered_case('ALL CAPS') == 'AlL cApS'
-staggered_case('ignore 77 the 444 numbers') == 'IgNoRe 77 ThE 444 nUmBeRs'
+puts staggered_case('I Love Launch School!') == 'I lOvE lAuNcH sChOoL!'
+puts staggered_case('ALL CAPS') == 'AlL cApS'
+puts staggered_case('ignore 77 the 444 numbers') == 'IgNoRe 77 ThE 444 nUmBeRs'
