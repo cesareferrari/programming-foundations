@@ -21,4 +21,17 @@ puts rotate_rightmost_digits(735291, 5) == 752913
 puts rotate_rightmost_digits(735291, 6) == 352917
 
 
+def max_rotation(number)
+  number_digits = number.to_s.size
+  number_digits.downto(2) do |n|
+    number = rotate_rightmost_digits(number, n)
+  end
+  number
+end
 
+
+max_rotation(735291) == 321579
+max_rotation(3) == 3
+max_rotation(35) == 53
+max_rotation(105) == 15 # the leading zero gets dropped
+max_rotation(8_703_529_146) == 7_321_609_845
